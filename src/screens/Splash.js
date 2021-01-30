@@ -8,7 +8,7 @@ useEffect(()=>{
     setTimeout(() => {
         checklog();
     }, 5000);
-},[])
+},)
  async function checklog() {
      const value=await AsyncStorage.getItem('@isUserLogin');
      if(value && Number(value) == 1){
@@ -24,7 +24,8 @@ useEffect(()=>{
      }
 }
  return(
-    <View><Text>Splashscreeen</Text><Text>Hello</Text>
+    <View><Text>Splashscreeen</Text><Text>Hello and Welcome!</Text>
+    <Text style={{fontSize:30}}>React Native</Text>
     <Button title='goto log' onPress={()=>navigation.navigate('Login')}/></View>
  );
 }
