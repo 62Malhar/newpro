@@ -5,7 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import DatePicker from 'react-native-datepicker';
 
 
 export default function Login({ navigation }) {
@@ -13,7 +13,7 @@ export default function Login({ navigation }) {
   const [pswd, setPswd] = useState('');
   const [mail, setMail] = useState('');
   const [dob, setDob] = useState('');
-
+  const[date,setDate]=useState('');
    async function check(){
     if(name==''){
       alert('enter valid name!');
@@ -51,12 +51,16 @@ export default function Login({ navigation }) {
         onChangeText={(data) => setMail(data)}
         style={Styles.txtinp}
       />
-      <TextInput
-        placeholder="Date of Birth"
-        value={dob}
-        onChangeText={(data) => setDob(data)}
-        style={Styles.txtinp}
-      />
+     <DatePicker 
+     style={Styles.date}
+          date={date} 
+          mode="date" 
+          placeholder="select date"
+          format="DD-MM-YYYY"
+          onDateChange={(date) => {
+            setDate(date);
+          }}
+        />
       <TextInput
         placeholder="Password"
         value={pswd}
@@ -77,7 +81,7 @@ export default function Login({ navigation }) {
         <Button
           title="NEXT"
           color="purple"
-          onPress={()=>check()}
+          onPress={()=>navigation.navigate('SOCIAL NETWORK')}
         />
       </View>
     </View>
@@ -96,6 +100,15 @@ const Styles = StyleSheet.create({
   phtxt: {
     fontSize: 20,
     marginTop: 25,
+  },
+  date:{
+    width:370,
+    marginHorizontal:10,
+    marginRight:100,
+    marginTop:20,
+    backgroundColor:'#f1f1f1',
+    borderRadius:2,
+    borderColor:'black',
   },
   main: { justifyContent: 'center', flex: 1, backgroundColor: 'white' },
 

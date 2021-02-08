@@ -3,7 +3,7 @@ import { View, Text, Image, TextInput, Button, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator} from '@react-navigation/drawer';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Foundation from 'react-native-vector-icons/Foundation';
 import Messages from './Messages';
@@ -63,20 +63,33 @@ function Homie() {
 }
 
 function User(navigation) {
-  
 
   return (
-    <Drawer.Navigator initialRouteName="Home">
-      <Drawer.Screen
-        name="Home"
-        component={Home}
-      />
-      <Drawer.Screen name="Messages" component={Messages} />
-      <Drawer.Screen name="MySubscribers" component={MySubscribers} />
-      <Drawer.Screen name="Mycontacts" component={Mycontacts} />
-      <Drawer.Screen name="Notification" component={Notification} />
-    </Drawer.Navigator>
+    <Drawer.Navigator>
+    <Drawer.Screen
+      name="Home"
+      component={Home1}
+ />
+    <Drawer.Screen name="Messages" component={Messages} />
+    <Drawer.Screen name="MySubscribers" component={MySubscribers1} />
+    <Drawer.Screen name="Mycontacts" component={Mycontacts} />
+    <Drawer.Screen name="Notification" component={Notification} />
+  </Drawer.Navigator>
   );
+}
+function Home1(params) {
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name='Mainpage' component={Home}/>
+    </Stack.Navigator>
+  );
+}
+function MySubscribers1(){
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name='SUBS' component={MySubscribers}/>
+    </Stack.Navigator>
+  );  
 }
 
 

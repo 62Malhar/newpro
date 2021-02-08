@@ -160,7 +160,7 @@ const Stack = createStackNavigator();
 function S1({ navigation }) {
   const [index, setIndex] = useState(0);
   return (
-    <ScrollView style={{ backgroundColor: '#f1f1f1' }}>
+    <View style={{ backgroundColor: '#f1f1f1' }}>
       <View
         style={Styles.main}>
         <AntDesign
@@ -171,7 +171,10 @@ function S1({ navigation }) {
         />
         <TextInput placeholder="Search Contact..." value={null} />
       </View>
-      <View style={Styles.main1}>
+      <Text></Text>
+      <Text></Text>
+      <Text></Text>
+      <ScrollView style={Styles.main1}>
         <View style={{ borderBottomWidth: 2, marginHorizontal: 10, borderBottomColor: '#d3dedd' }}>
           <Text style={{ fontSize: 15, fontWeight: 'bold', paddingTop: 7, paddingleft: 10, textAlign: 'center' }}>
             Top Contacts
@@ -289,8 +292,8 @@ function S1({ navigation }) {
             )}
           />
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 function Second({ route }) {
@@ -366,13 +369,14 @@ const Styles = StyleSheet.create({
     borderWidth: 1,
     width: 370,
     height: 50,
+    position:'absolute',
     backgroundColor: 'white',
     borderRadius: 25,
     marginTop: 10,
     alignContent: 'center',
     marginLeft: 15,
   },
-  main1: { marginHorizontal: 10, borderWidth: 3, borderRadius: 10, marginTop: 20, backgroundColor: 'white', borderColor: '#d3dedd' },
+  main1: {height:500, marginTop:50,marginHorizontal: 10, borderWidth: 3, borderRadius: 10, marginTop: 20, backgroundColor: 'white', borderColor: '#d3dedd' },
 ig:{
   width: 100,
   height: 100,

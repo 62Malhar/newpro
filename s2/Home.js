@@ -30,7 +30,9 @@ let Int = [
 ];
 
 function M1({ navigation }) {
-
+  useEffect(() => {
+    navigation.openDrawer();
+  })
   const [count, setCount] = useState(0);
   return (
     <ScrollView style={Styles.main}>
@@ -78,19 +80,22 @@ function M1({ navigation }) {
   );
 }
 function M2() {
+  useEffect(() => {
+    navigation.openDrawer();
+  })
   return (
     <View style={Styles.m2}>
       <Text style={{ fontSize: 30, fontWeight: 'bold' }}>Contact Form</Text>
       <View style={Styles.m3}>
         <View style={Styles.m4}>
-          <AntDesign name='mail' color='black' size={30} style={{paddingTop:5}} />
+          <AntDesign name='mail' color='black' size={30} style={{ paddingTop: 5 }} />
           <TextInput
             placeholder="Your Email"
             value={null}
           />
         </View>
         <View style={Styles.m5}>
-          <AntDesign name='questioncircleo' color='black' size={30} style={{paddingTop:5}}/>
+          <AntDesign name='questioncircleo' color='black' size={30} style={{ paddingTop: 5 }} />
           <TextInput
             placeholder="Question"
             value={null}
@@ -119,78 +124,78 @@ export default function Home() {
     </Stack.Navigator>
   );
 }
-const Styles=StyleSheet.create({
-main:{backgroundColor: 'white', marginTop: 15, marginLeft: 10},
-img1:{
-  width: 150,
-  height: 150,
-  borderWidth: 5,
-  borderColor: '#f1f1f1',
-  borderRadius: 75,
-},
-txt:{ fontSize: 20, marginLeft: 5 },
-txt1:{ fontSize: 40, fontWeight: 'bold' },
-main1:{
-  flex: 1,
-  backgroundColor: '#f1f1f1',
-  justifyContent: 'center',
-  borderWidth: 3,
-  marginHorizontal: 10,
-  marginTop: 30,
-  borderColor: 'white',
-  borderRadius: 20,
-  height: 250,
-  width: 350,
-  justifyContent: 'center'
-},
-txt2:{
-  textAlign: 'center',
-  fontSize: 30,
-  backgroundColor: 'yellow',
-  borderTopRightRadius: 20,
-  borderTopLeftRadius: 20,
-  fontWeight: 'bold',
-  width:344,
-},
-txt3:{
-  marginHorizontal: 30,
-  marginVertical: 20,
-  fontWeight: 'bold',
-  color: 'purple',
-  fontSize: 15,
-  borderWidth: 1,
-  borderRadius: 7,
-  height: 30,
-  backgroundColor: 'white',
-  fontSize: 20
-},
-main2:{
-  marginTop: 13,
-  marginLeft: 90,
-  borderWidth: 1,
-  height: 50,
-  width: 200,
-  borderColor: 'purple',
-  backgroundColor: 'purple',
-  alignItems: 'center',
-  borderRadius: 100,
-  justifyContent: 'center',
-},
-main3:{
-  marginTop: 13,
-  marginHorizontal: 59,
-  borderWidth: 1,
-  height: 50,
-  width: 200,
-  borderColor: 'purple',
-  backgroundColor: 'purple',
-  alignItems: 'center',
-  borderRadius: 100,
-  justifyContent: 'center',
-},
-m2:{  alignItems: 'center', marginTop: 30, backgroundColor: 'white' },
-m3:{ borderWidth: 4, width: 350,height:350, borderRadius: 10, borderColor: '#f1f1f1', backgroundColor: '#cbd6d6', borderLeftColor: 'yellow' },
-m4:{ flexDirection: 'row', borderBottomWidth: 1, marginHorizontal: 7 },
-m5:{ flexDirection: 'row', borderBottomWidth: 1, marginHorizontal: 7 },
+const Styles = StyleSheet.create({
+  main: { backgroundColor: 'white', marginTop: 15, marginLeft: 10 },
+  img1: {
+    width: 150,
+    height: 150,
+    borderWidth: 5,
+    borderColor: '#f1f1f1',
+    borderRadius: 75,
+  },
+  txt: { fontSize: 20, marginLeft: 5 },
+  txt1: { fontSize: 40, fontWeight: 'bold' },
+  main1: {
+    flex: 1,
+    backgroundColor: '#f1f1f1',
+    justifyContent: 'center',
+    borderWidth: 3,
+    marginHorizontal: 10,
+    marginTop: 30,
+    borderColor: 'white',
+    borderRadius: 20,
+    height: 250,
+    width: 350,
+    justifyContent: 'center'
+  },
+  txt2: {
+    textAlign: 'center',
+    fontSize: 30,
+    backgroundColor: 'yellow',
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+    fontWeight: 'bold',
+    width: 344,
+  },
+  txt3: {
+    marginHorizontal: 30,
+    marginVertical: 20,
+    fontWeight: 'bold',
+    color: 'purple',
+    fontSize: 15,
+    borderWidth: 1,
+    borderRadius: 7,
+    height: 30,
+    backgroundColor: 'white',
+    fontSize: 20
+  },
+  main2: {
+    marginTop: 13,
+    marginLeft: 90,
+    borderWidth: 1,
+    height: 50,
+    width: 200,
+    borderColor: 'purple',
+    backgroundColor: 'purple',
+    alignItems: 'center',
+    borderRadius: 100,
+    justifyContent: 'center',
+  },
+  main3: {
+    marginTop: 13,
+    marginHorizontal: 59,
+    borderWidth: 1,
+    height: 50,
+    width: 200,
+    borderColor: 'purple',
+    backgroundColor: 'purple',
+    alignItems: 'center',
+    borderRadius: 100,
+    justifyContent: 'center',
+  },
+  m2: { alignItems: 'center', marginTop: 30, backgroundColor: 'white' },
+  m3: { borderWidth: 4, width: 350, height: 350, borderRadius: 10, borderColor: '#f1f1f1', backgroundColor: '#cbd6d6', borderLeftColor: 'yellow' },
+  m4: { flexDirection: 'row', borderBottomWidth: 1, marginHorizontal: 7 },
+  m5: { flexDirection: 'row', borderBottomWidth: 1, marginHorizontal: 7 },
 
 });
