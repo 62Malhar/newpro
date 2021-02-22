@@ -1,10 +1,9 @@
 import React,{useState,useEffect} from 'react';
-import { SafeAreaView, View, Text, FlatList, StyleSheet,TextInput,Button } from 'react-native'
-import { ForceTouchGestureHandler } from 'react-native-gesture-handler';
+import { SafeAreaView, View, Text, FlatList, StyleSheet,TextInput,Button, Dimensions  } from 'react-native'
 import { connect } from 'react-redux';
 import { getData, fetchPostAction } from '../../Redux/Actions';
-import PostItem from './PostItem';
 import {change} from '../../Redux/Actions';
+const { height, width } = Dimensions.get('window');
 function Post(props) {
     const { posts } = props;
     const[title,setTitle]=useState('');
@@ -43,12 +42,42 @@ function Post(props) {
                 />
                 <Button title='SUBMIT' onPress={handleSubmit} />
             </View>
-           
+            <FlatList
+                data={posts}
+            renderItem={({item}) => (
+                <View style={styles.itemContainer}>
+            <View style={styles.itemRow}>
+                <View style={styles.textView}>
+                    <Text style={styles.textStyles}>{item.body}</Text>
+                </View>
+            </View>
+        </View>
+
+            )}
+            keyExtractor={item => item.id}
+            ItemSeparatorComponent={() => <View style={styles.line} />}
+
+            />
         </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
+    itemContainer: {
+        paddingVertical: 5,
+        paddingHorizontal: 20,
+    },
+    itemRow: {
+        flexDirection: 'row',
+    },
+    textView: {
+        width: width,
+        justifyContent: 'center',
+    },
+    textStyles: {
+        color: '#000',
+        fontSize: 20
+    },
     container: {
         flex: 1,
         alignSelf: 'center'

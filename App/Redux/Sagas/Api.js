@@ -8,14 +8,29 @@ function* postApi(obj) {
     },
     body: JSON.stringify({
       title: obj.first,
-      body: obj.second
+      body: obj.second,
+      userId: 1,
     }),
   })
     .then(response => response.json())
     .then(json => console.log(json))
-  const posts = yield res.length > 0 ? res : []
-  return posts;
+  const boom = yield res.length > 0 ? res : []
+  return boom;
 }
 export const Api = {
-  postApi,fetchApi
+  postApi,getApi
+}
+function* getApi() {
+  const res = yield fetch('https://jsonplaceholder.typicode.com/posts',{
+      method: 'GET',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: '',
+  })
+  .then(response => response.json())
+  
+  const posts = yield res.length > 0 ? res : []
+  return posts;
 }
