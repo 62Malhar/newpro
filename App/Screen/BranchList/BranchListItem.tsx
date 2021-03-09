@@ -15,9 +15,10 @@ type Props = {
         },
         deleteUser: () => void,
     },
+       onEdit: (arg) => void,
 }
 
-const userListItem = ({user,student}: Props) => {
+const userListItem = ({user,onEdit,student}: Props) => {
     const [studentA, setStudentA] = useState(null);
     const database = useDatabase();
     let navigation = useNavigation();
@@ -31,12 +32,15 @@ const userListItem = ({user,student}: Props) => {
     return (
             <View>
                 <TouchableOpacity onPress={()=>navigation.navigate('StudentList',{user,students:studentA})}>
-                <View style={{backgroundColor:'#f1f1f1',borderWidth:1,marginHorizontal:10,marginTop:10}} >
-                    <Text style={{fontSize:20}}>user Name: {user._raw.note}</Text>
-                    <Text style={{fontSize:20}}>user Code: {user._raw.weight}</Text>
+                <View style={{backgroundColor:'#f1f1f1',borderWidth:1,marginHorizontal:10,marginTop:20}} >
+                    <Text style={{fontSize:20}}>branch Name: {user._raw.note}</Text>
+                    <Text style={{fontSize:20}}>branch Code: {user._raw.weight}</Text>
                     <View>
                         <TouchableOpacity  onPress={onDeleteuser}>
                             <Text style={{fontSize:20,backgroundColor:'red',color:'white'}} >Delete</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity  onPress={() => onEdit(user)}>
+                            <Text style={{fontSize:20,backgroundColor:'blue',color:'white'}} >Update</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -52,4 +56,3 @@ const enhance = withObservables(['user'], ({ user, database }) => (
     }));
 
 export default enhance(userListItem);
-

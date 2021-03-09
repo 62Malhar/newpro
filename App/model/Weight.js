@@ -23,6 +23,14 @@ export default class Weight extends Model {
       info.tag = body.tag;
     });
   }
+  @action updateUser = async data => {
+    await this.update(user => {
+      user.id = data.id;
+      // user.userId = userDetail.userId;
+      user.note = data.firstName;
+      user.weight = data.lastName;
+    });
+  }
   async deleteStudent() {
     await this.student.destroyAllPermanently();
   }

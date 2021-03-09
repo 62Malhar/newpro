@@ -3,7 +3,18 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { useDatabase } from '@nozbe/watermelondb/hooks';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import withObservables from '@nozbe/with-observables';
-
+type ParamsProps = {
+    params: {
+        userDetail: {
+            _raw: {
+                id: string,
+                user_id: number,
+                note: string,
+                weight: string,
+            },
+        },
+    }
+}
 const AddBranch = ({branch}) => {
     const [id, setId] = useState("");
     const [firstName, setFirstName] = useState('');
@@ -11,20 +22,41 @@ const AddBranch = ({branch}) => {
     const database = useDatabase();
     let navigation = useNavigation();
     let route = useRoute();
-
+    React.useEffect(() => {
+        let params = route.params;
+        if (params) {
+            let userDetail = params.userDetail
+            setId(userDetail._raw.id);
+            setFirstName(userDetail._raw.note);
+            setLastName(userDetail._raw.weight);
+            // setUserId(userDetail._raw.user_id);
+        }
+    }, [])
     const onSubmit = async () => {
-       
+        let data = {
+            id,
+            // userId,
+            firstName,
+            lastName
+        };
         const userCollection = await database.collections.get('users');
-        
+        if (id !== "") {
+            let userDetail = route.params.userDetail;
+            await database.action(async () => {
+            userDetail.updateUser(data)
+            });
+        } else {
         await database.action(async () => {
-            const newBranch = await userCollection.create(branch => {
-
-                branch.note = firstName
-                branch.weight = lastName
+            const newBranch = await userCollection.create(user => {
+                // user.userId = userId
+                user.note = firstName
+                user.weight = lastName
             })
         })
-            navigation.navigate("BranchList");
     }
+        navigation.navigate("BranchList");
+    }
+
     return (
         <View>
             {/* <View style={styles.textInputView}>

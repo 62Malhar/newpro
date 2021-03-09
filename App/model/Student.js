@@ -11,10 +11,17 @@ export default class Student extends Model {
   // @field('user_id') userId
   @field('name') name
   @field('tag') tag
-  // @field('user_id') userId
 
   @relation("users", "user_id") user;
 
+  @action updateStudent = async (student, user) => {
+    await this.update(contact_info => {
+      // contact_info.id = contactInfo.id;
+      contact_info.name = student.name;
+      contact_info.tag = student.tag;
+      contact_info.user.set(user)
+    });
+  };
 
   @action async deleteStudent() {
     await this.markAsDeleted(); // syncable

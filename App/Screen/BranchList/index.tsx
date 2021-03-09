@@ -26,17 +26,19 @@ const BranchList = ({ users }: any) => {
         let userData = await userCollection.query().fetch()
         return userData;
     }
+    const onEditUser = (user) => {
+        navigation.navigate("AddBranch", { userDetail: user })
+    }
 
     return (
         <View>
             <TouchableOpacity  onPress={() => navigation.navigate("AddBranch")}>
-                <Text style={{fontSize:30,backgroundColor:'cyan',textAlign:'center'}} >Add user</Text>
+                <Text style={{fontSize:30,backgroundColor:'cyan',textAlign:'center'}} >Add branch</Text>
             </TouchableOpacity>
             <FlatList
                 data={dataList}
-                renderItem={({ item, index }) => <BranchListItem user={item} database={database} />}
-                keyExtractor={item => item.id}
-               
+                renderItem={({ item, index }) => <BranchListItem user={item} onEdit={(user) => onEditUser(user)} database={database} />}
+                keyExtractor={item => item.id}     
             />
         </View>
     )

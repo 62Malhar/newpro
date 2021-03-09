@@ -36,15 +36,18 @@ const StudentList = ({ users }: any) => {
             setDataList(response);
         })
     }
-
+    const onEditContactInfo = (user, student) => {
+        navigation.navigate("AddStudent", { user, student });
+    }
     return (
         <View>
             <TouchableOpacity  onPress={() => navigation.navigate("AddStudent", {user})}>
-                <Text style={{fontSize:20,backgroundColor:'green',textAlign:'center'}} >Add Contact Info</Text>
+                <Text style={{fontSize:20,backgroundColor:'green',textAlign:'center'}} >Add Student</Text>
             </TouchableOpacity>
             <FlatList
                 data={dataList}
-                renderItem={({ item, index }) => <StudentListItem student={item} onDelete={(student) => onDeleteContactInfo(student)}  database={database} />}
+                renderItem={({ item, index }) => <StudentListItem student={item} onEdit={(user, student) => onEditContactInfo(user, student)}
+                onDelete={(student) => onDeleteContactInfo(student)}  database={database} />}
                 keyExtractor={item => item.id}
             />
         </View>
@@ -52,4 +55,3 @@ const StudentList = ({ users }: any) => {
 }
 
 export default StudentList;
-
